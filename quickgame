@@ -1,0 +1,37 @@
+import random
+
+def generate_question():
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    operator = random.choice(['*', '/'])
+    return f"What is {num1} {operator} {num2}?"
+
+def check_answer(question, user_answer):
+    num1, operator, num2 = question.split()[2:]
+    num1, num2 = int(num1), int(num2)
+
+    if operator == '*' and user_answer == num1 * num2:
+        return True
+    elif operator == '/' and user_answer == num1 / num2:
+        return True
+    else:
+        return False
+
+def play_game():
+    print("Welcome to the Math Frogger Game!")
+    print("Multiply (*) or Divide (/) to cross the street.")
+
+    for _ in range(5):  # You can adjust the number of questions
+        question = generate_question()
+        print(question)
+        user_answer = float(input("Your answer: "))  # Accept float for division
+        if check_answer(question, user_answer):
+            print("Correct! You can hop forward.")
+        else:
+            print("Oops, you got hit. Game over!")
+            break
+
+    print("Congratulations! You made it across the street.")
+
+# Let me know if you want any adjustments or have questions!
+	play_game()
